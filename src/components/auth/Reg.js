@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { reg } from "../../store/actions/authActions";
 
 class Reg extends Component {
     state={
@@ -17,10 +18,11 @@ class Reg extends Component {
     }
     handleSubmit=(e)=>{
         e.preventDefault();
-        console.log(e)
+       this.props.reg(this.state)
     }
     render() {
-        const {auth}=this.props
+        const {auth,authError}=this.props
+      
         if(auth.uid) 
         return <Redirect to='/' />
         return (
@@ -55,8 +57,11 @@ class Reg extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn black lighten-1 z-depth-0">
-                            SignUp
+                          Register
                         </button>
+                        <div className="red-text center">
+                            {authError ? <p>{authError}</p> :null}
+                        </div>
                     </div>
                 </form>
             </div>
@@ -64,10 +69,16 @@ class Reg extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    return{
-       
-        auth:state.fireBaseData.auth
+    return{  
+        auth:state.fireBaseData.auth,
+        authError:state.auth.authError
     }
-   
 }
-export default connect(mapStateToProps) (Reg)
+ const mapDispatchToState = (dispatch) => {
+     return{
+         reg:(newUser)=>dispatch(reg(newUser))
+     }
+    
+}
+
+export default connect(mapStateToProps,mapDispatchToState) (Reg)
