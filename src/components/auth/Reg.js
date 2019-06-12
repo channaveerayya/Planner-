@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Reg extends Component {
     state={
@@ -18,6 +20,9 @@ class Reg extends Component {
         console.log(e)
     }
     render() {
+        const {auth}=this.props
+        if(auth.uid) 
+        return <Redirect to='/' />
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} >
@@ -58,4 +63,11 @@ class Reg extends Component {
         )
     }
 }
-export default  Reg
+const mapStateToProps = (state) => {
+    return{
+       
+        auth:state.fireBaseData.auth
+    }
+   
+}
+export default connect(mapStateToProps) (Reg)

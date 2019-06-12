@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { logIn } from "../../store/actions/authActions";
+import { Redirect } from "react-router-dom";
 class Login extends Component {
     state={
         email:'',
@@ -17,7 +18,10 @@ class Login extends Component {
        this.props.logIn(this.state)
     }
     render() {
-        const { authError}=this.props
+    
+        const { authError,auth}=this.props
+        if(auth.uid) 
+        return <Redirect to='/' />
     
         return (
             <div className="container">
@@ -53,7 +57,8 @@ class Login extends Component {
 
  const mapStateToProps = (state) => {
      return{
-         authError:state.auth.authError
+         authError:state.auth.authError,
+         auth:state.fireBaseData.auth
      }
     
 }
