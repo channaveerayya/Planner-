@@ -4,9 +4,9 @@ import SingIn from './SignIn';
 import SignOut from './SignOut';
 import { connect } from "react-redux";
 const  Navbar = (props) =>{
-    const {auth}=props
+    const {auth,profile}=props
     console.log("navbar-->",auth);
-    const links=auth.uid ?  <SingIn/> : <SignOut/>
+    const links=auth.uid ?  <SingIn profile={profile}/> : <SignOut/>
     return (
         <nav className="nav-wrapper grey darken-3 ">
             <div className="container">
@@ -24,7 +24,8 @@ const  Navbar = (props) =>{
 const mapStateToProps = (state) => {
     console.log("dada",state);
     return{
-        auth:state.fireBaseData.auth
+        auth:state.fireBaseData.auth,
+        profile:state.fireBaseData.profile
     }
     
 }

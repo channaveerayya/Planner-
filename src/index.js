@@ -16,7 +16,13 @@ const store=createStore(rootReducer,
                             applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})
                                 ),
                             reduxFirestore(firebaseConfig),
-                            reactReduxFirebase(firebaseConfig,{attachAuthIsReady:true,firebaseStateName: 'fireBaseData' /* rootReducer firebase name used here  */})
+                            reactReduxFirebase(firebaseConfig,{
+                                useFirestoreForProfile:true,//syncing the profile object to the store
+                                 userProfile:'users',/*by default it do not  know where to go and get the collection 
+                                                    so--->we need to tell go and  get the collection and sync 
+                                                    here 'users' is collection name*/
+                                attachAuthIsReady:true,
+                                firebaseStateName: 'fireBaseData' /* rootReducer firebase name used here  */})
                         )
                     );
 store.firebaseAuthIsReady.then(() => {
@@ -28,10 +34,4 @@ store.firebaseAuthIsReady.then(() => {
     document.getElementById('root'));
     serviceWorker.unregister();
 })
-
-
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 
