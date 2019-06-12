@@ -23,7 +23,7 @@ import { compose } from "redux";
     }
 }
 const mapStateToProps=(state)=>{
-    console.log(state)
+    
 return{
     projects:state.fireStoreData.ordered.project
 }
