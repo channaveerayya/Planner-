@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
 
+
 const  SignOut = () =>{
     return (
        <ul className="right">
@@ -19,4 +20,5 @@ const  SignOut = () =>{
     );
 }
 
-export default SignOut
+
+export default  SignOut
