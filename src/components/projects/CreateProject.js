@@ -6,7 +6,6 @@ class CreateProject extends Component {
     state={
        title:'',
        content:''
-        
     }
     handleChange=(e)=>{
         this.setState({
