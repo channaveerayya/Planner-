@@ -8,6 +8,7 @@ const rootReducer=combineReducers({
     auth:authReducer,
     project:projectReducer,
     fireStoreData:firestoreReducer,
-    fireBaseData:firebaseReducer
+    fireBaseData:firebaseReducer /* if you vant change the name of 'fireBaseData' 
+                                to an other change in index.js in reactReduxFirebase -> firebaseStateName: 'fireBaseData' */
 });
 export default rootReducer;
