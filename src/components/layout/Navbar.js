@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import SingIn from './SignIn';
 import SignOut from './SignOut';
-const  Navbar = () =>{
+import { connect } from "react-redux";
+const  Navbar = (props) =>{
     return (
         <nav className="nav-wrapper grey darken-3 ">
             <div className="container">
@@ -15,5 +16,11 @@ const  Navbar = () =>{
         </nav>
     )
 }
+const mapStateToProps = (state) => {
+    return{
 
-export default Navbar
+    }
+    
+}
+
+export default connect(mapStateToProps)(Navbar)
